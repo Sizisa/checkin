@@ -5,8 +5,7 @@ import json
 import os
 import sys
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+
 
 
 sckey = os.environ['sckey']
