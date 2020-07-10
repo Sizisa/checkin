@@ -5,7 +5,6 @@ import time
 import json
 import sys
 import os
-from note163 import *
 from wps import *
 
 # 解决https访问警告
@@ -38,16 +37,7 @@ def _docer_checkin(data):
         docer_checkin(item['sid'])
 
 
-def _youdao_checkin(data):
-    print("\n\n           ===有道云笔记签到===")
-    note = data['noteyoudao']
-    for index,item in enumerate(note):
-        YNOTE_SESS = noteyoudao(item['YNOTE_SESS'], item['user'], item['passwd'])
-        if YNOTE_SESS is not None:
-            # cookie失效，更新
-            data['noteyoudao'][index]['YNOTE_SESS'] = YNOTE_SESS
-            f = open(sys.path[0]+'/data.json', 'w', encoding="utf8",)
-            json.dump(data, f, ensure_ascii=False)
+
 
 
 
@@ -62,4 +52,3 @@ if __name__ == '__main__':
 
     _wps_checkin(data)
     _wps_invite(data)
-    _youdao_checkin(data)
