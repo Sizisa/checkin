@@ -24,6 +24,7 @@ def _wps_checkin(data):
 
 
 def _wps_invite(data):
+    func()
     wps_inv = data['wps_invite']
 
     print("\n\n            ===邀请僵尸账号获得额外会员=== ")
@@ -37,6 +38,9 @@ def _docer_checkin(data):
     for item in sid:
         print("    为{}签到---↓".format(item['name']))
         docer_checkin(item['sid'])
+
+
+
 
 
 
@@ -59,7 +63,7 @@ if __name__ == '__main__':
     "wps_invite": [
         {
             "name": "user1",
-            "invite_userid": 191641526,
+            "invite_userid": 522042530,
             "sid": [ ]
         }
     ]

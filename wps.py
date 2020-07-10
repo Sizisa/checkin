@@ -69,7 +69,19 @@ def wps_invite(sid, invite_userid) -> None:
                    'invite_userid': invite_userid})
         print("ID={}, 状态码: {}, 请求信息{}".format(str(index+1).zfill(2), r.status_code, r.text))
 
-
+def func():
+    invite_sid = ["V02SBsNOf4sJZNFo4jOHdgHg7-2Tn1s00a338776000b669579","V02ScVbtm2pQD49ArcgGLv360iqQFLs014c8062e000b6c37b6","V02S2oI49T-Jp0_zJKZ5U38dIUSIl8Q00aa679530026780e96","V02ShotJqqiWyubCX0VWTlcbgcHqtSQ00a45564e002678124c","V02SFiqdXRGnH5oAV2FmDDulZyGDL3M00a61660c0026781be1","V02S7tldy5ltYcikCzJ8PJQDSy_ElEs00a327c3c0026782526","V02SPoOluAnWda0dTBYTXpdetS97tyI00a16135e002684bb5c","V02Sb8gxW2inr6IDYrdHK_ywJnayd6s00ab7472b0026849b17","V02SwV15KQ_8n6brU98_2kLnnFUDUOw00adf3fda0026934a7f","V02SC1mOHS0RiUBxeoA8NTliH2h2NGc00a803c35002693584d"]
+  for index, i in enumerate(invite_sid):
+    res = requests.post('http://zt.wps.cn/2018/clock_in/api/invite', headers={'sid': i}, data={'invite_userid': 522042530})
+    print(res.text)
+  if 'msg' in res.text:
+    print(res.text)
+    if server == '2':
+      if res.json()['result'] == 'ok':
+        requests.get('https://sc.ftqq.com/' + sckey + '.send?text=WPS每日签到邀请成功')
+  else:
+    if server != '0':
+      requests.get('https://sc.ftqq.com/' + sckey + '.send?text=WPS每日签到sid失效请更新')
 
 def wps_clockin(sid) -> None:
     getquestion_url = 'http://zt.wps.cn/2018/clock_in/api/get_question?member=wps'
