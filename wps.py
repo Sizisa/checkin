@@ -1,5 +1,10 @@
 import requests
 import json
+import os
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 # 参加打卡活动，第一次或是中间断了签到后需要重新参加活动，才能打开领取会员
 '''
@@ -9,6 +14,13 @@ header:{
 }
 get url 
 '''
+sckey = os.environ['sckey']
+
+def send(sckey,title,msg):
+    serverUrl = 'http://sc.ftqq.com/'+sckey+'.send'
+    data={'text':title,'desp':msg}
+    r=requests.post(url=serverUrl,data=data)
+    print(r.text)
 
 # wps稻壳会员签到
 def docer_checkin(sid: str):
@@ -21,9 +33,11 @@ def docer_checkin(sid: str):
     resp = json.loads(r.text)['data']
     if 'is_checkin_today' not in resp:
         print('签到失败！！！sid可能需要更新')
+        send(sckey,'wps签到失败', '签到失败！！！sid可能需要更新')
         return
     if resp.get('is_checkin_today', False):
         print("今天已经签到过了")
+        send(sckey,'wps签到失败', "今天已经签到过了")
         return
     # 7:00-14:00不需要答题
 
@@ -138,6 +152,7 @@ def wps_clockin(sid: str) -> None:
     clockin_url = 'http://zt.wps.cn/2018/clock_in/api/clock_in?member=wps'
     r = s.get(clockin_url, headers={'sid': sid})
     print("签到信息: {}".format(r.text))
+    send(sckey,'wps签到', "签到信息: {}".format(r.text))
     resp = json.loads(r.text)
     # 重新报名
     if resp['msg'] == '前一天未报名':

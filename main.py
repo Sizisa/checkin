@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+
 # coding=utf-8
 import requests
 import time
@@ -6,6 +6,10 @@ import json
 import sys
 import os
 from wps import *
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 
 # 解决https访问警告
 # from requests.packages.urllib3.exceptions import InsecureRequestWarning,InsecurePlatformWarning
