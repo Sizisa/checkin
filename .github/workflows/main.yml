@@ -33,7 +33,7 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Run script
-      run: python main.py
+      run: python3 main.py
 
       env:
         sckey: ${{ secrets.SCKEY }}
