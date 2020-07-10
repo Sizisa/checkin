@@ -15,9 +15,9 @@ def send(sckey,title,msg):
     r=requests.post(url=serverUrl,data=data)
     print(r.text)
 
-# wps稻壳会员签到
+
 def docer_checkin(sid: str):
-    # 先检查今天是否签到过
+
     base_info_url = "https://zt.wps.cn/2019/docer_sign_ppt/api/base_info"
     sid = 'V02S8fWiw86zsFg1oE5p4hCHAR6GPE000a4e69e2002508b828'
     WxCode = '011Jq1jn1G3NMo0oisjn1i3ojn1Jq1jQ'
@@ -32,7 +32,7 @@ def docer_checkin(sid: str):
         print("今天已经签到过了")
         send(sckey,'wps签到失败', "今天已经签到过了")
         return
-    # 7:00-14:00不需要答题
+
 
     docer_checkin_url = "https://zt.wps.cn/2019/docer_sign_ppt/api/checkin"
     r = s.post(docer_checkin_url, headers={'sid': sid, 'Wx-Code': WxCode}, data={'is_question':0})
@@ -40,7 +40,7 @@ def docer_checkin(sid: str):
     print(resp)
 
 
-# wps接受邀请
+
 def wps_invite(sid: list, invite_userid: int) -> None:
     default_sid = [
         "V02StVuaNcoKrZ3BuvJQ1FcFS_xnG2k00af250d4002664c02f",
@@ -69,11 +69,11 @@ def wps_invite(sid: list, invite_userid: int) -> None:
         print("ID={}, 状态码: {}, 请求信息{}".format(str(index+1).zfill(2), r.status_code, r.text))
 
 
-# wps签到
+
 def wps_clockin(sid: str) -> None:
     getquestion_url = 'http://zt.wps.cn/2018/clock_in/api/get_question?member=wps'
     s = requests.session()
-    # 打卡签到需要参加活动
+    
     r = s.get(getquestion_url, headers={'sid': sid})
     '''
     {
@@ -110,12 +110,11 @@ def wps_clockin(sid: str) -> None:
     except Exception as e:
         print("签到失败！！！ sid可能需要更新")
         return
-    # print(resp['data']['multi_select'])
-    # 只做单选题 multi_select==1表示多选题
+
     while resp['data']['multi_select'] == 1:
         r = s.get(getquestion_url, headers={'sid': sid})
         resp = json.loads(r.text)
-        # print(resp['data']['multi_select'])
+
 
     answer_id = 3
     for i in range(4):
@@ -127,10 +126,10 @@ def wps_clockin(sid: str) -> None:
     print("选择答案: {}".format(answer_id))
 
     answer_url = 'http://zt.wps.cn/2018/clock_in/api/answer?member=wps'
-    # 提交答案
+
     r = s.post(answer_url, headers={'sid': sid}, data={'answer': answer_id})
     resp = json.loads(r.text)
-    # 答案错误
+
     if resp['msg'] == 'wrong answer':
         print("答案不对，挨个尝试")
         for i in range(4):
@@ -141,13 +140,13 @@ def wps_clockin(sid: str) -> None:
                 print(r.text)
                 break
 
-    # 打卡签到
+
     clockin_url = 'http://zt.wps.cn/2018/clock_in/api/clock_in?member=wps'
     r = s.get(clockin_url, headers={'sid': sid})
     print("签到信息: {}".format(r.text))
     send(sckey,'wps签到', "签到信息: {}".format(r.text))
     resp = json.loads(r.text)
-    # 重新报名
+
     if resp['msg'] == '前一天未报名':
         print('    尝试报名')
         signup_url = 'http://zt.wps.cn/2018/clock_in/api/sign_up'
