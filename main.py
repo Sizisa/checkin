@@ -49,10 +49,25 @@ if __name__ == '__main__':
     now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
 
     print("--------------------------"+now+"----------------------------")
-    root_dir = os.path.split(os.path.realpath(__file__))[0]
-    f = open(root_dir+'/data.json', 'r', encoding="utf8")
-    data = json.load(f)
-    f.close()
+    """ root_dir = os.path.split(os.path.realpath(__file__))[0]
+    f = open(root_dir+'/data.json', 'r', encoding="utf8") """
+    data = {
+    "wps_checkin": [
+        {
+            "name": "user1",
+            "sid": "V02SudofqeCyYCsy3kb72z8V71JYdGQ00a46fbdb001f1dbca2"
+        }
+    ],
+    "wps_invite": [
+        {
+            "name": "user1",
+            "invite_userid": 191641526,
+            "sid": [ ]
+        }
+    ]
+
+}
+    # f.close()
 
     _wps_checkin(data)
     _wps_invite(data)
