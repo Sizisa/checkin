@@ -6,14 +6,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-# 参加打卡活动，第一次或是中间断了签到后需要重新参加活动，才能打开领取会员
-'''
-URL: http://zt.wps.cn/2018/clock_in/api/sign_up?member=wps
-header:{
-    sid:
-}
-get url 
-'''
+
 sckey = os.environ['sckey']
 
 def send(sckey,title,msg):
