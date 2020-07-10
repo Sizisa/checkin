@@ -24,7 +24,7 @@ def _wps_checkin(data):
 
 
 def _wps_invite(data):
-    func()
+    
     wps_inv = data['wps_invite']
 
     print("\n\n            ===邀请僵尸账号获得额外会员=== ")
