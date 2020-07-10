@@ -16,7 +16,7 @@ def send(sckey,title,msg):
     print(r.text)
 
 
-def docer_checkin(sid: str):
+def docer_checkin(sid:str):
 
     base_info_url = "https://zt.wps.cn/2019/docer_sign_ppt/api/base_info"
     sid = 'V02S8fWiw86zsFg1oE5p4hCHAR6GPE000a4e69e2002508b828'
@@ -41,7 +41,7 @@ def docer_checkin(sid: str):
 
 
 
-def wps_invite(sid: list, invite_userid: int) -> None:
+def wps_invite(sid:list, invite_userid:int) -> None:
     default_sid = [
         "V02StVuaNcoKrZ3BuvJQ1FcFS_xnG2k00af250d4002664c02f",
         "V02SWIvKWYijG6Rggo4m0xvDKj1m7ew00a8e26d3002508b828",
@@ -70,7 +70,7 @@ def wps_invite(sid: list, invite_userid: int) -> None:
 
 
 
-def wps_clockin(sid: str) -> None:
+def wps_clockin(sid:str) -> None:
     getquestion_url = 'http://zt.wps.cn/2018/clock_in/api/get_question?member=wps'
     s = requests.session()
     
