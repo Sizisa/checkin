@@ -7,8 +7,6 @@ import sys
 import os
 from wps import *
 
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 
 # 解决https访问警告
