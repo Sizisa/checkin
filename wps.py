@@ -27,11 +27,11 @@ def docer_checkin(sid):
     resp = json.loads(r.text)['data']
     if 'is_checkin_today' not in resp:
         print('签到失败！！！sid可能需要更新')
-        send(sckey,'wps签到失败', '签到失败！！！sid可能需要更新')
+        send(sckey,'docer签到失败', '签到失败！！！sid可能需要更新')
         return
     if resp.get('is_checkin_today', False):
         print("今天已经签到过了")
-        send(sckey,'wps签到失败', "今天已经签到过了")
+        send(sckey,'docer签到失败', "今天已经签到过了")
         return
 
 
@@ -39,6 +39,7 @@ def docer_checkin(sid):
     r = s.post(docer_checkin_url, headers={'sid': sid, 'Wx-Code': WxCode}, data={'is_question':0})
     resp = json.loads(r.text)
     print(resp)
+    send(sckey,'docer签到', resp)
 
 
 
