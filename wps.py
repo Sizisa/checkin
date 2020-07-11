@@ -14,7 +14,7 @@ def send(sckey,title,msg):
     serverUrl = 'http://sc.ftqq.com/'+sckey+'.send'
     data={'text':title,'desp':msg}
     r=requests.post(url=serverUrl,data=data)
-    print(r.text)
+    print('server酱返回信息：'+r.text)
 
 
 def docer_checkin(sid):
