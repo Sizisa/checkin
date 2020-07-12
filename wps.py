@@ -145,7 +145,12 @@ def wps_clockin(sid) -> None:
     clockin_url = 'http://zt.wps.cn/2018/clock_in/api/clock_in?member=wps'
     r = s.get(clockin_url, headers={'sid': sid})
     print("签到信息: {}".format(r.text))
-    send(sckey,'wps签到', "签到信息: {}".format(r.text))
+    if json.loads(r.text)['result']=='ok':
+        send(sckey,'WPS签到通知', "签到信息: 签到成功")
+    elif json.loads(r.text)['result']=='error':
+        send(sckey,'WPS签到通知', "签到信息: {}".format(json.loads(r.text)['msg']))
+
+    
     resp = json.loads(r.text)
 
     if resp['msg'] == '前一天未报名':
