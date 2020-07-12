@@ -73,4 +73,4 @@ if __name__ == '__main__':
 
     _wps_checkin(data)
     _wps_invite(data)
-    _docer_checkin(data)
+    #_docer_checkin(data)
