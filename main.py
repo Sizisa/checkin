@@ -57,7 +57,7 @@ if __name__ == '__main__':
     "wps_checkin": [
         {
             "name": "user1",
-            "sid": "V02SudofqeCyYCsy3kb72z8V71JYdGQ00a46fbdb001f1dbca2"
+            "sid": "V02SdInIkwdIV0Ff-4kGKgiu5H4DQlo00a89062a001f1dbca2"
         }
     ],
     "wps_invite": [
