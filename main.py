@@ -66,6 +66,6 @@ if __name__ == '__main__':
     }
     # f.close()
 
-    _wps_checkin(data)
+    #_wps_checkin(data)
     _wps_invite(data)
     #_docer_checkin(data)

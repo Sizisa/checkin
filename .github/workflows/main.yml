@@ -6,8 +6,8 @@ name: wps_checkin
 # events but only for the master branch
 on:
 
-  #schedule:
-   # - cron: '10 23 * * *'
+  schedule:
+   - cron: '10 19 * * *'
   push:
   
 
